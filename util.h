@@ -1,7 +1,7 @@
 /******************************************************************************
 *
 * File Name: util.h
-*	      (c) 2018 AED
+*
 *
 * COMMENTS
 *    Other functions
@@ -91,7 +91,7 @@ int verify_light(int **m_aux, int row, int col, int *values);
 * Description: checks if next move is worth taking
 *
 *****************************************************************************/
-int posso_ir(int **matrix, int **m_aux, int i, int *row, int *col, int *values);
+int advance(int **matrix, int **m_aux, int i, int *row, int *col, int *values);
 
 
 /******************************************************************************

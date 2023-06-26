@@ -1,7 +1,7 @@
 /******************************************************************************
 *
 * File Name: mem.c
-*	      (c) 2018 AED
+*
 *
 * COMMENTS
 *    Memory operations
@@ -40,15 +40,11 @@ void free_matrix_aux(int **m_aux, int *values)
   free(m_aux);
 }
 
-/* aloca o tamnho da matriz de acordo com o passo e com os limites da matriz inicial */
+/* allocates a matrix with respect to the boundary and step limitations*/
 int **matrix_k(int **m_aux, int *values)
 {
-  int i = 0, j = 0; /*, l, c,l_up, l_down, c_right, c_left   */
-
-  int c = 0, l = 0;
-
+  int i = 0, j = 0, c = 0, l = 0; /*, l, c,l_up, l_down, c_right, c_left   */
   dim_matrix_aux(values, &l, &c);
-  /*printf("l:%d c:%d\n", l, c);*/
   m_aux = (int**)malloc((l+1)*sizeof(int*));
   for(i = 0; i < (l+1); i++){
     m_aux[i] = (int*)malloc((c+1)*sizeof(int));
@@ -67,26 +63,26 @@ void dim_matrix_aux(int *values, int *l, int *c)
 {
   int l_up = 0, l_down = 0, c_right = 0, c_left = 0;
 
-  if(values[3] - values[5] < 0) /* linha do agente - passo */
+  if(values[3] - values[5] < 0) /* line of the agent - step */
   {
-    l_up = values[3]; /* linha acima do agente igual linha do agente */
+    l_up = values[3]; /* line above agent equals line of agent */
   }
   else{
-    l_up = values[5]; /* linha acima do agente igual ao passo */
+    l_up = values[5]; /* line above agent equals step */
   }
-  if(values[3] + values[5] > values[0]){ /* linha do agente + passo */
+  if(values[3] + values[5] > values[0]){ /* line of agent + step */
     l_down = values[0] - values[3] + 1;
   }
   else{
-    l_down = values[5]; /* linha abaixo do agente igual ao passo */
+    l_down = values[5]; /* line bellow agent equals step */
   }
-  if(values[4] - values[5]< 0){ /* coluna do agente - passo */
+  if(values[4] - values[5]< 0){ /* column of agent - step */
     c_left = values[4];
   }
   else{
     c_left = values[5];
   }
-  if(values[4] + values[5] > values[1]){ /* coluna do agente + passo */
+  if(values[4] + values[5] > values[1]){ /* column of agent + step */
     c_right = values[1] - values[4] + 1;
   }
   else{

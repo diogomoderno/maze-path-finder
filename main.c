@@ -1,11 +1,13 @@
 /******************************************************************************
 *
 * File Name: main.c
-*	      (c) 2018 AED
+*	
 * Authors: Diogo Moderno, Beatriz Silva
 *
-* values[0] = L   values[1] = C  values[2] = obj  values[3] = l  values[4] = c
-* values[5] = k(passo)  values[6] = e
+* values[0] = Width of matrix   values[1] = Length of matrix  
+* values[2] = goal  values[3] = initial line position  
+* values[4] = initial column position
+* values[5] = step values[6] = initial points
 *
 *****************************************************************************/
 
@@ -23,7 +25,7 @@
 int main(int argc, char *argv[])
 {
   FILE *fp_entry, *fp_out;
-  char *fich_out = NULL, *fich_in = NULL;
+  char *file_out = NULL, *file_in = NULL;
   int size, *values = NULL, **matrix = NULL;
   STACK *pstack;
   stackInit(&pstack);
@@ -33,24 +35,24 @@ int main(int argc, char *argv[])
     exit (1);
   }
 
-  fich_in = argv[1];
-  check_file(fich_in); /* verificação de ".maps" (em file.c) */
-  size = strlen(fich_in) + 1;
-  fp_entry = open_file(fich_in, "r");
+  file_in = argv[1];
+  check_file(file_in); /* verifies the ".maps" extension */
+  size = strlen(file_in) + 1;
+  fp_entry = open_file(file_in, "r");
 
-  fich_out = (char*)malloc((size+1)*sizeof(char));
-  if(fich_out == NULL){
-    /*printf("\nMemory allocation for fich_out in main\n");*/
+  file_out = (char*)malloc((size+1)*sizeof(char));
+  if(file_out == NULL){
     exit(1);
   }
-
-  strncpy(fich_out, fich_in, size-5); /* copia o nome de fich_in sem a extensao */
-  fich_out[size-6] = '\0';
-  strcat(fich_out, ".paths");
-  fp_out = open_file(fich_out, "a");
+  /* copies filename without extension*/
+  strncpy(file_out, file_in, size-5); 
+  file_out[size-6] = '\0';
+  strcat(file_out, ".paths");
+  fp_out = open_file(file_out, "a");
 
   for(;;){
-    values = get_values(fp_entry, fp_out, values); /* 1º linha (em file.c) */
+    /* gets first line of a file */
+    values = get_values(fp_entry, fp_out, values); 
     if(values == NULL){
       free(values);
       break;
@@ -83,7 +85,7 @@ int main(int argc, char *argv[])
 
   fclose(fp_entry);
   fclose(fp_out);
-  free(fich_out);
+  free(file_out);
 
 
   exit(0);

@@ -1,7 +1,7 @@
 /******************************************************************************
 *
 * File Name: stack.c
-*          (c) 2018 AED
+*
 *
 * COMMENTS
 *    stack implementation
@@ -71,7 +71,7 @@ void stackGet(STACK ** pstack)
 	free(ap);
 }
 
-void preenche_bjork(STACK **pstack, STACK **bjork, int *values)
+void fill_stack(STACK **pstack, STACK **bjork, int *values)
 {
 	int k = 0;
 	STACK *ap = *pstack;
@@ -82,11 +82,11 @@ void preenche_bjork(STACK **pstack, STACK **bjork, int *values)
 	}
 }
 
-void copy_to_file(FILE *fp_out, STACK *bjork)
+void copy_to_file(FILE *fp_out, STACK *stack_p)
 {
-	if(bjork == NULL){
+	if(stack_p == NULL){
 		return;
 	}
-	fprintf(fp_out,"%d %d %d\n",bjork->element.i, bjork->element.j, bjork->element.energy);
-	copy_to_file(fp_out, bjork->next);
+	fprintf(fp_out,"%d %d %d\n",stack_p->element.i, stack_p->element.j, stack_p->element.energy);
+	copy_to_file(fp_out, stack_p->next);
 }

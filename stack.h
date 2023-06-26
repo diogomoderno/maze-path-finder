@@ -1,7 +1,7 @@
 /******************************************************************************
 *
 * File Name: stack.h
-*          (c) 2018 AED
+*     
 *
 * COMMENTS
 *    stack implementation
@@ -72,7 +72,7 @@ void stackGet(STACK **pstack);
 
 
 /******************************************************************************
-* preenche_bjork()
+* fill_stack()
 *
 * Arguments: pointer to stack, pointer to aux stack, pointer to values
 * Returns: (void)
@@ -81,7 +81,7 @@ void stackGet(STACK **pstack);
 * Description: copies best path to a different stack
 *
 *****************************************************************************/
-void preenche_bjork(STACK **pstack, STACK **bjork, int *values);
+void fill_stack(STACK **pstack, STACK **bjork, int *values);
 
 
 /******************************************************************************

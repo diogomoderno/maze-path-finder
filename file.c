@@ -1,7 +1,7 @@
 /******************************************************************************
 *
 * File Name: file.c
-*	      (c) 2018 AED
+*	 
 *
 * COMMENTS
 *    Open/read/write files
@@ -16,7 +16,6 @@ FILE *open_file(char *name, char *mode)
   FILE *f;
   f = fopen(name, mode);
   if (f == NULL) {
-    /*printf("\nERROR IN OPENING FILE\n");*/
     exit (1);
   }
   return f;
@@ -27,11 +26,10 @@ void check_file (char *fich)
   char *verif;
   int occurence = '.';
   char extension[] = ".maps";
-
-  verif = strrchr(fich, occurence);  /* strrchr retorna ultima occorencia guardada, neste caso, em verif (suposto ser ".1maps") */
-
+  /*returns the last occurence of the file extension*/
+  verif = strrchr(fich, occurence);
+  /* checks if the file extension is correct*/
   if( strcmp(verif, extension) != 0){
-    /*printf("\nInvalid file name\nMust have .maps extension\n\n");*/
     exit(1);
   }
 }
@@ -46,7 +44,7 @@ int* get_values(FILE *fp_entry, FILE *fp_out, int *values)
   }
   else{
     values = (int*)malloc(7*sizeof(int));
-    values[0] = number;   /*o fscanf anterior faz uma leitura*/
+    values[0] = number;
     fprintf(fp_out, "%d ", values[0]);
   }
 
@@ -73,19 +71,16 @@ int **read_matrix(FILE *fp_entry, int *values, int** matrix)
       else{
         fscanf(fp_entry, "%d", &(matrix[i][j]));
       }
-      /*printf("[%d] ", matrix[i][j]);*/
     }
-    /*printf("\n");*/
   }
-  /*printf("\n");*/
   return matrix;
 }
 
 
 void skip(FILE *fp_entry, int *values)
 {
-  int zezinho = 0, i = 0;
+  int aux = 0, i = 0;
   for(i = 0; i<values[0]*values[1]; i++){
-    fscanf(fp_entry, "%d", &zezinho);
+    fscanf(fp_entry, "%d", &aux);
   }
 }

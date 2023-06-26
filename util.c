@@ -1,14 +1,11 @@
 /******************************************************************************
 *
 * File Name: util.c
-*	      (c) 2018 AED
+*	 
 *
 * COMMENTS
 *    Other functions
-*
-* values[0] = L   values[1] = C  values[2] = obj  values[3] = l  values[4] = c
-* values[5] = k(passo)  values[6] = e
-*
+* 
 *****************************************************************************/
 #include "stack.h"
 #include "util.h"
@@ -39,23 +36,21 @@ int check_val(int *values) /* retorna 1 se os valores estao correctos  */
 
 void verify(FILE *fp_out, STACK **pstack, int *values, int **matrix)
 {
-  int **m_aux = NULL; /* m_aux -> matriz luzes */
+  int **m_aux = NULL; /* m_aux -> light matrix */
 
   int l = values[3], c = values[4];
   int k = values[5];
 
-  STACK *bjork;
-  stackInit(&bjork);
+  STACK *stack_pointer;
+  stackInit(&stack_pointer);
 
-  /*sum_prize(fp_out, values, matrix);*/ /* em solve.c */
   m_aux = matrix_k(m_aux, values);
   matrix[0][1] = -1;
 
   if(values[2] == -2){
-    /*print_matrix(m_aux, values);*/
     matrix[0][0] = values[6];
     light_agent(m_aux, values);
-    max_energy(pstack, l, c, matrix, m_aux, k, values, 2, &bjork);
+    max_energy(pstack, l, c, matrix, m_aux, k, values, 2, &stack_pointer);
     if(matrix[0][1] < 1){
       fprintf(fp_out,"-1\n");
       matrix[1][0] = 10;
@@ -66,16 +61,13 @@ void verify(FILE *fp_out, STACK **pstack, int *values, int **matrix)
     else if(matrix[1][0] == 0){
       fprintf(fp_out,"%d", matrix[0][1]);
       fprintf(fp_out,"\n");
-      copy_to_file(fp_out, bjork);
+      copy_to_file(fp_out, stack_pointer);
     }
   }
   else if(values[2]>0){
-    /*print_matrix(m_aux, values);*/
     matrix[0][0] = values[6];
-    /*m_aux[values[3]][values[4]] = 1;*/
     light_agent(m_aux, values);
-    max_energy(pstack, l, c, matrix, m_aux, k, values, 1, &bjork);
-    /*printf("matrix[1][0] = %d\n", matrix[1][0]);*/
+    max_energy(pstack, l, c, matrix, m_aux, k, values, 1, &stack_pointer);
 
     if(matrix[0][1] < 1){
       fprintf(fp_out,"-1\n");
@@ -83,7 +75,7 @@ void verify(FILE *fp_out, STACK **pstack, int *values, int **matrix)
     else if(matrix[1][0] == 2){
       fprintf(fp_out,"%d", matrix[0][1]);
       fprintf(fp_out,"\n");
-      copy_to_file(fp_out, bjork);
+      copy_to_file(fp_out, stack_pointer);
     }
     else if((matrix[1][0] == 1) || (matrix[1][0] == 0)){
       fprintf(fp_out,"%d\n", -1);
@@ -91,10 +83,10 @@ void verify(FILE *fp_out, STACK **pstack, int *values, int **matrix)
     fprintf(fp_out,"\n");
   }
 
-  while(!stackEmpty(bjork)){
-    stackGet(&bjork);
+  while(!stackEmpty(stack_pointer)){
+    stackGet(&stack_pointer);
   }
-  free(bjork);
+  free(stack_pointer);
   free_matrix_aux(m_aux, values);
 }
 
@@ -118,7 +110,7 @@ void lights(int **m_aux, int row, int col, int *values, int state)
 }
 
 
-int posso_ir(int **matrix, int **m_aux, int i, int *row, int *col, int *values)
+int advance(int **matrix, int **m_aux, int i, int *row, int *col, int *values)
 {
   if(i == 1 && (*row - 1>0)){
 	  if(verify_light(m_aux, *row-1, *col, values) == 0){
@@ -185,7 +177,6 @@ int verify_light(int **m_aux, int row, int col, int *values)
   i = row - f + 1;
   j = col - g + 1;
 
-  /*printf("line_aux: %d  col_aux: %d\n", line_aux, col_aux);*/
   return (m_aux[i][j]);
 
 }

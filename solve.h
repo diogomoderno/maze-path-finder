@@ -1,10 +1,10 @@
 /******************************************************************************
 *
 * File Name: solve.h
-*	      (c) 2018 AED
+*
 *
 * COMMENTS
-*    Resolucao dos problemas em funcao do valor de k
+*   Problem resolution regarding the value of the step given
 *
 *****************************************************************************/
 #ifndef _SOLVE_H
@@ -34,7 +34,7 @@
 * backward)
 *
 *****************************************************************************/
-void max_energy(STACK **pstack, int row, int col, int **matrix, int **m_aux, int _depth, int *values, int var, STACK **bjork);
+void max_energy(STACK **pstack, int row, int col, int **matrix, int **m_aux, int _depth, int *values, int var, STACK **pointer);
 
 
 
