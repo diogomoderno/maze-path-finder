@@ -26,4 +26,4 @@ solve.o: solve.c solve.h stack.c stack.h util.c util.h
 
 
 clean:
-	rm -f *.o *.h.gch *.paths core a.out amazeme *~
+	rm -f *.o *.h.gch tests/*.paths core a.out amazeme *~

@@ -31,6 +31,10 @@ make
 ./amazeme tests/<name_of_the_file.maps>
 ```
 * A .paths file will be generated and can be compared to the corresponding .check to confirm that the optimal path has been found.
+*Then, to clean whatever files have been created from the compilation, run:
+```
+make clean
+```
 
 
 ## Authors
