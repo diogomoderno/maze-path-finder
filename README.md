@@ -2,6 +2,8 @@
 
 The Path Finder is a project developed for the Algorithms and Data Structures university course.
 
+![Maze](maze_img.jpg)
+
 ## Description
 
 The Path finder is a maze with weighted entries (points) with the goal of finding either the best path (the one that leads to the maximum number of points) or the minimum path that leads to a positive number of points. 
@@ -14,6 +16,9 @@ The arguments that define each problem and are found in the first line of each .
 - starting points;
 
 A .paths file is created to show the results and the path taken from the initial position.
+
+The search is made recursively using a DFS (Depth First Search) approach and the current "best path" is saved in a dynamic stack with LIFO access.
+
 
 ## Getting Started
 
