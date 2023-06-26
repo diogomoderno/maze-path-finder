@@ -39,6 +39,4 @@ make clean
 
 ## Authors
 
-Contributors names and contact info
-
-ex. [@diogomoderno] (https://www.linkedin.com/in/diogo-moderno-71335b156/)
+[@diogomoderno](https://www.linkedin.com/in/diogo-moderno-71335b156/)
