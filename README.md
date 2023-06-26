@@ -2,7 +2,7 @@
 
 The Path Finder is a project developed for the Algorithms and Data Structures university course.
 
-![Maze](<center><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--DHx-epgA--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://thepracticaldev.s3.amazonaws.com/i/9vj2bll4b6c31dqfqfdb.jpg" alt="drawing" width="200"/></center>)
+(<center><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--DHx-epgA--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://thepracticaldev.s3.amazonaws.com/i/9vj2bll4b6c31dqfqfdb.jpg" alt="drawing" width="600"/></center>
 
 ## Description
 
